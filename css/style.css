@@ -1,0 +1,14 @@
+/* map related css */
+
+/*#map { height: 500px; }
+*/
+
+html, body {
+	height: 100%;
+	margin: 0;
+}
+#map {
+	width: 100vw;
+	height: 100vh;
+}
+
