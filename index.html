@@ -13,7 +13,7 @@
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
 
-    <title>GovHack 2020 Submission by Lonely Knight</title>
+    <title>AWT</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -24,9 +24,9 @@
 
   <body>
 
-   <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+   <nav id="main-nav" class="navbar navbar-expand-sm navbar-dark bg-primary mb-3 shadow">
         <div class="container">
-            <a class="navbar-brand" href="index.html">CS in VicAg</a>
+            <a class="navbar-brand" href="index.html">Animal Welfare Tracker</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,8 +38,12 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+<!--                     <li class="nav-item">
                         <a href="#" class="nav-link">Logout</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <!-- <button class="openbtn" onclick="openNav()">&#9776; New observation</button> -->
+                        <a class="nav-link" onclick="openNav()" href="#">New Observation</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Login</a>
@@ -52,8 +56,120 @@
         </div>
     </nav>
 
-        <div id="map"></div>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <form>
+        <fieldset>
+        <!-- Form Name -->
+        <legend>Enter your observation</legend>
 
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="animals">Animal(s) affected</label>
+          <div class="col-md-12">
+            <select id="animals" name="animals" class="form-control">
+              <option value="1">Cattle</option>
+              <option value="2">Sheep</option>
+              <option value="3">Horses</option>
+              <option value="4">Goats</option>
+              <option value="5">Chickens</option>
+              <option value="6">Ducks</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="problem">Welfare problem</label>
+          <div class="col-md-12">
+            <select id="problem" name="problem" class="form-control">
+              <option value="1">disease</option>
+              <option value="2">pest</option>
+              <option value="3">poison plant</option>
+              <option value="4">environmental</option>
+              <option value="5">predation</option>
+              <option value="6">other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="welfare-details">Details of problem</label>  
+          <div class="col-md-12">
+          <input id="welfare-details" name="welfare-details" type="text" placeholder="details" class="form-control input-md">
+            
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="comments">Comments</label>
+          <div class="col-md-12">                     
+            <textarea class="form-control" id="comments" name="comments" style="min-width: 100%">Enter your comments here</textarea>
+          </div>
+        </div>
+
+        <!-- Prepended text-->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="geolocation">Location</label>
+          <div class="col-md-12">
+            <div class="input-group">
+              <!-- <span class="input-group-addon">use current</span> -->
+              <input id="geolocation" name="geolocation" class="form-control" placeholder="lat lon" type="text" required="">
+            </div>
+            <p class="help-block">Note: on mobile devices, defaults to your location</p>
+          </div>
+        </div>
+
+        <!-- File Button --> 
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="image">Image upload</label>
+          <div class="col-md-12">
+            <input id="image" name="image" class="input-file" type="file">
+          </div>
+        </div>
+
+        <!-- Multiple Radios -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="location-info">Location accuracy</label>
+          <div class="col-md-4">
+          <div class="radio">
+            <label for="location-info-0">
+              <input type="radio" name="location-info" id="location-info-0" value="1" checked="checked">
+              Exact location
+            </label>
+            </div>
+          <div class="radio">
+            <label for="location-info-1">
+              <input type="radio" name="location-info" id="location-info-1" value="2">
+              Within 1km
+            </label>
+            </div>
+          <div class="radio">
+            <label for="location-info-2">
+              <input type="radio" name="location-info" id="location-info-2" value="3">
+              Within 5km
+            </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="singlebutton">Submit observation</label>
+          <div class="col-md-12">
+            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Go</button>
+          </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+    </div>
+    <div id="main">
+        <div id="map"></div>
+    </div>
         
 
     <!-- Bootstrap core JavaScript
@@ -68,7 +184,9 @@
     <script src="js/leaflet.shpfile.js"></script>
     <script src="js/leaflet-providers.js"></script>
     <script src="js/leaflet.wms.js"></script>
+    <script src="js/leaflet-color-markers.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/interface.js"></script>
 
   </body>
 </html>

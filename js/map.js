@@ -17,41 +17,42 @@ var baseMaps = {
 	"Esri World Topo Map": Esri_WorldTopoMap
 }
 
-OpenTopoMap.addTo(map);
-
+Esri_WorldTopoMap.addTo(map);
 
 // overlays
 
 
+// point data, example of markers contributed by users
+var p1 = L.marker([-36.9, 144.6], {icon: redIcon}).bindPopup('2020-08-16T12:47:31+00:00, Cattle, lice, 20 Hereford steers affected'),
+    p2 = L.marker([-37.2, 144.1], {icon: violetIcon}).bindPopup('2020-07-06T08:16:31+00:00, Horses, hairy caterpillar, nest in stringybark'),
+    p3 = L.marker([-37.3, 144.8], {icon: greenIcon}).bindPopup('2020-08-03T10:27:31+00:00, Sheep, dog attack, 3 wethers with torn wool'),
+    p4 = L.marker([-37.6, 145.0], {icon: redIcon}).bindPopup('2020-07-15T09:22:31+00:00, cattle, grass tetany, 3 breeders'),
+    p5 = L.marker([-37.25, 144.11], {icon: violetIcon}).bindPopup('2020-07-09T08:16:31+00:00, Horses, hairy caterpillar, 2 nests destroyed in group of bluegums');
 
-// other data, example of markers
-var p1 = L.marker([-37.1, 144.6]).bindPopup('First point of interest'),
-    p2 = L.marker([-37.2, 144.7]).bindPopup('Second  point of interest'),
-    p3 = L.marker([-37.3, 144.8]).bindPopup('Third point of interest'),
-    p4 = L.marker([-37.4, 144.9]).bindPopup('Fourth point of interest');
+var pointsOfInterest = L.layerGroup([p1, p2, p3, p4, p5]);
 
-var pointsOfInterest = L.layerGroup([p1, p2, p3, p4]);
+pointsOfInterest.addTo(map);
 
 //var VicLandUse = new L.Shapefile('layers/VicLandUse.zip'); 
-var ibra7 = new L.Shapefile('layers/IBRA7_subregions.zip'); 
+//var ibra7 = new L.Shapefile('layers/IBRA7_subregions.zip'); 
 var NLPMU_2018 = new L.Shapefile('layers/NLPMU_2018.zip'); 
 
 
 // WMS samples
 //"https://geo.cerdi.edu.au/geoserver/vvg/wms?service=WMS&request=getMap&version=1.3.0#vicdem_coloured_relief_30m_rgb_3857_resaved"
-var relief_map = L.WMS.overlay('https://geo.cerdi.edu.au/geoserver/vvg/wms?service=WMS&request=getMap&version=1.3.0#vicdem_coloured_relief_30m_rgb_3857_resaved', {
-  'layers': 'vicdem_coloured_relief_30m_rgb_3857_resaved',
-  'format': 'image/png'
-})
+// var relief_map = L.WMS.overlay('https://geo.cerdi.edu.au/geoserver/vvg/wms?service=WMS&request=getMap&version=1.3.0#vicdem_coloured_relief_30m_rgb_3857_resaved', {
+//   'layers': 'vicdem_coloured_relief_30m_rgb_3857_resaved',
+//   'format': 'image/png'
+// })
 
 var overlayMaps = {
-	"Sample points": pointsOfInterest,
-	"IBRA7 Subregions": ibra7,
 	"National Landcare Program Mgt Units": NLPMU_2018,
-	"Relief map":relief_map
 };
 
+//  "Sample points": pointsOfInterest,
 //	"Land Use Vic": VicLandUse
+//  "IBRA7 Subregions": ibra7,
+//  "Relief map":relief_map
 
 
 L.control.layers(baseMaps, overlayMaps).addTo(map);
@@ -71,4 +72,6 @@ function onLocationError(e) {
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
-map.locate({setView: true, maxZoom: 16});
+
+// troubleshoot, sometimes it sets a huge circle
+//map.locate({setView: true, maxZoom: 16});
