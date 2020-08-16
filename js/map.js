@@ -46,7 +46,8 @@ var NLPMU_2018 = new L.Shapefile('layers/NLPMU_2018.zip');
 // })
 
 var overlayMaps = {
-	"National Landcare Program Mgt Units": NLPMU_2018,
+    "Sample points": pointsOfInterest,
+	"National Landcare Program Mgt Units": NLPMU_2018
 };
 
 //  "Sample points": pointsOfInterest,
