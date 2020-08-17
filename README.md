@@ -4,13 +4,13 @@
 Team Lonely Knight
 
 ## Overview
-This project is a proof of concept application submitted for GovHack 2020. It is a crowdsourcing experiment to that seeks to capture livestock welfare threats in Victoria. This project is not complete, but show only a basic map and interface to represent the ideas of how a full size application would work. The main plannned features of the application are listed below:
+This project is a proof of concept application submitted for GovHack 2020. It is a crowdsourcing experiment that seeks to capture livestock welfare threats in Victoria. This project is not complete, it shows only a basic map and interface to represent the ideas of how a full size application would work. The main planned features of the application are listed below:
 
 Signed up users submit incidents or observations, including uploading photos if required. These reports are categorised by livestock species (cattle, horses, sheep, goats etc), by threat type (disease, environmental threat, parasites, predation, poisonous plants etc). Entries are geotagged and time-stamped.
 
 The application is a website which will be optimised for mobile use. It consists of a map which can be used by signed in users to enter incidents and observations. It will display a number of relevant layers that are publically available datasets, such as soil information, elevation, boundaries etc. 
 
-The goal of the application is to display the reported incidents, which could directly serve as warnings to livestock owners. However, the bigger goal is to collect data to get a better understanding of combinations of environmental factors that can affect livestock welfare for different classes of animals. Example being grass tetany in cattle where soil types, pasture composition and weather are implicated). From this, it is possible to produce warnings for livestock owners. One benefit to signed up users would be the receipt of notifications of close by incidents as well as warnings calculated based on prior observations.
+The goal of the application is to display the reported incidents, which could directly serve as warnings to livestock owners. However, the bigger goal is to collect data to get a better understanding of combinations of environmental factors that can affect livestock welfare for different classes of animals. One example being grass tetany in cattle where soil types, pasture composition and weather are implicated. From this, it is possible to produce warnings for livestock owners. One benefit to signed up users would be the receipt of notifications of close by incidents as well as warnings calculated based on prior observations.
 
 The overall goal of this citizen science experiment is to establish not only a localised network of users who can help inform each other, but also to contribute to the overall understanding of factors that drive livestock welfare issues.
 
